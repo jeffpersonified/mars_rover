@@ -10,6 +10,8 @@ class Plateau
     within_width?(location[:x]) && within_height?(location[:y])
   end
 
+  private
+
   def within_width? x
     x >= 0 && x <= width
   end

@@ -24,6 +24,16 @@ class Rover
     forward if @plateau.on?(future_location)
   end
 
+  def rotate_left 
+    @rotation -= 90
+  end
+
+  def rotate_right
+    @rotation += 90
+  end
+
+  private
+
   def future_location
     case orientation
     when 'N'
@@ -49,16 +59,6 @@ class Rover
       @location[:x] -= 1
     end
   end
-
-  def rotate_left 
-    @rotation -= 90
-  end
-
-  def rotate_right
-    @rotation += 90
-  end
-
-  private
 
   def to_degrees(orientation)
     case orientation
