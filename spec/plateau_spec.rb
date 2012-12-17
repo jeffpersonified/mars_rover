@@ -2,11 +2,16 @@ require '../lib/plateau.rb'
 
 describe Plateau do
   let(:plateau){ Plateau.new(7, 8) }
+  let(:stringy_plateau){ Plateau.new('7', '8')}
   
   describe "#new" do
     it "initializes with the correct width and height" do
       plateau.width.should eq(7)
       plateau.height.should eq(8)
+    end
+    it "initializes with the correct width and height when passed strings as arguments" do
+      stringy_plateau.width.should eq(7)
+      stringy_plateau.height.should eq(8)
     end
   # throw error when initialized with a negative
   end

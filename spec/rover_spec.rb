@@ -4,6 +4,7 @@ require '../lib/plateau.rb'
 describe Rover do
   let(:plateau){ Plateau.new(5, 5) }
   let(:rover){ Rover.new(2, 2, 'N', plateau ) }
+  let(:stringy_rover){ Rover.new('4','4','N', plateau) }
 
   context "#new" do
     it "initializes with the correct orientation" do
@@ -14,7 +15,6 @@ describe Rover do
       rover.location[:y].should eq(2)
     end
     it "initializes the correct coordinates even if x and y are passed as strings" do
-      stringy_rover = Rover.new('4','4','N', plateau)
       stringy_rover.location[:x].should eq(4)
       stringy_rover.location[:y].should eq(4)
     end
