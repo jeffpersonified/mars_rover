@@ -2,7 +2,7 @@ class Rover
   attr_reader :location, :rotation
 
   def initialize(x, y, orientation, plateau)
-    @location = {x: x, y: y}
+    @location = {x: x.to_i, y: y.to_i}
     @rotation = to_degrees(orientation)
     @plateau = plateau
   end

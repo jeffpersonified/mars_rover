@@ -4,7 +4,7 @@ describe Plateau do
   let(:plateau){ Plateau.new(7, 8) }
   
   describe "#new" do
-    it "should initialize with the correct width and height" do
+    it "initializes with the correct width and height" do
       plateau.width.should eq(7)
       plateau.height.should eq(8)
     end
@@ -33,7 +33,7 @@ describe Plateau do
     end
 
     context "for y coordinates less than or equal to the plateau's height and greater than or equal to zero" do
-      it "should return true" do
+      it "returns true" do
         plateau.on?({ x: 7, y: 8 }).should be_true
         plateau.on?({ x: 0, y: 0 }).should be_true
       end
