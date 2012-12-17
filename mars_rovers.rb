@@ -7,6 +7,7 @@ File.foreach('test_input.txt') do |line|
 end
 
 # dragonX = Navigation.new(input)
+# dragonX.execute
 # dragonX.outcome
 
 p input

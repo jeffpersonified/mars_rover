@@ -3,7 +3,7 @@ class Rover
 
   def initialize(x, y, orientation, plateau)
     @location = {x: x.to_i, y: y.to_i}
-    @rotation = to_degrees(orientation)
+    @rotation = to_degrees(orientation.upcase)
     @plateau = plateau
   end
 
