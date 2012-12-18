@@ -9,11 +9,21 @@ describe Plateau do
       plateau.width.should eq(7)
       plateau.height.should eq(8)
     end
+
     it "initializes with the correct width and height when passed strings as arguments" do
       stringy_plateau.width.should eq(7)
       stringy_plateau.height.should eq(8)
     end
-  # throw error when initialized with a negative
+
+    it "raises an error when initialized with a width less than or equal to zero" do
+      expect { Plateau.new( -1, 6 ) }.to raise_error
+      expect { Plateau.new( 0, 6 ) }.to raise_error
+    end
+
+    it "raises an error when initialized with a height less than or equal to zero" do
+      expect { Plateau.new( 1, -6 ) }.to raise_error
+      expect { Plateau.new( 1, 0 ) }.to raise_error
+    end
   end
 
   describe "#on?" do 
@@ -23,6 +33,7 @@ describe Plateau do
         plateau.on?({ x: -10, y: 8 }).should be_false
       end
     end
+
     context "for x coordinates less than or equal to the plateau's width and greater than or equal to zero" do
       it "returns true" do
         plateau.on?({ x: 7, y: 8 }).should be_true

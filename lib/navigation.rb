@@ -2,22 +2,42 @@ require_relative 'plateau'
 require_relative 'rover'
 
 class Navigation 
-  attr_reader :plateau, :vehicles
+  attr_reader :grid, :vehicles, :commands
 
   def initialize input
     @input = input
-    @grid = 
-    @vehicles = 
-    @commands = 
+    @grid = define_grid
+    @vehicles = define_vehicles 
+    @commands = define_commands 
+  end
+
+  def define_grid
+    grid_array = @input.shift
+    Plateau.new(grid_array[0], grid_array[1])
+  end
+
+  def define_vehicles
+    vehicles = []
+    @input.each_with_index do |vehicle, i|
+      if i % 2 == 0
+        vehicles << Rover.new(vehicle[0], vehicle[1], vehicle[2], @grid) 
+      end
+    end
+    vehicles
+  end
+
+  def define_commands
+    commands = []
+    @input.each_with_index do |command, i|
+      commands << command.first.split(//) if i % 2 == 1
+    end
+    commands
   end
 
   def execute
-    # p @vehicles
     @vehicles.each_with_index do | vehicle, i |
-       p @directions[i]
-      @directions[i].each do | direction |
-        # p vehicle
-        case direction
+      @commands[i].each do | command |
+        case command
         when 'M'
           vehicle.move
         when 'R'
@@ -29,44 +49,11 @@ class Navigation
     end
   end
 
-  def read file
-    # IO.readlines("test.txt")
-
-    input = []
-    File.foreach('test.txt') do |line|
-      input << line.chomp
-    end
-    p input
-
-    # implement file reading (each line to array)
-    # [[5,3],
-    #  [0,0,'N'],
-    #  ['R','M','M','M','M','M','L','M','M','M','L','L'],
-    #  [5,3,'E'],
-    #  ['R','R','M','L','M','M','R','M','M','M','L','M','R','M']]
-  end
-
-  def find_area
-    @input.shift
-  end
-
-  def find_vehicles
-    vehicles = []
-    @input.each_with_index do | vehicle, i |
-      unless i % 2 == 1
-        vehicles << Rover.new( vehicle[0], vehicle[1], vehicle[2], @plateau ) 
+  def outcome output_file
+    File.open(output_file, "w") do |file|
+      @vehicles.each do |vehicle|
+        file.puts "#{vehicle.location[:x]} #{vehicle.location[:y]} #{vehicle.orientation}"
       end
     end
-    vehicles
-  end
-
-  def find_directions
-    directions = []
-    @input.each_with_index do | direction, i |
-      unless i % 2 == 0
-        directions << direction
-      end
-    end
-    directions
   end
 end

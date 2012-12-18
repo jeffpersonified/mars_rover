@@ -72,7 +72,7 @@ describe Rover do
       rover.rotate_left
       rover.move
       rover.move
-      expect { :move }.to raise_error 
+      expect { rover.move }.to raise_error 
     end
   end
 end

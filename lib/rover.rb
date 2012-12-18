@@ -21,7 +21,7 @@ class Rover
   end
 
   def move
-    forward if @plateau.on?(future_location)
+    @plateau.on?(future_location) ? forward : (raise 'That move is not on the plateau!!!')
   end
 
   def rotate_left 
