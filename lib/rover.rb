@@ -4,7 +4,7 @@ class Rover
   def initialize(x, y, orientation, plateau)
     @location = {x: x.to_i, y: y.to_i}
     @rotation = to_degrees(orientation.upcase)
-    @plateau = plateau
+    @plateau  = plateau
   end
 
   def orientation
@@ -21,7 +21,7 @@ class Rover
   end
 
   def move
-    @plateau.on?(future_location) ? forward : (raise 'That move is not on the plateau!!!')
+    @plateau.contains?(future_location) ? forward : (raise 'That move is not on the plateau!!!')
   end
 
   def rotate_left 

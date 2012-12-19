@@ -26,32 +26,32 @@ describe Plateau do
     end
   end
 
-  describe "#on?" do 
+  describe "#contains?" do 
     context "for x coordinates greater than the plateau's width or less than zero" do
       it "returns false" do
-        plateau.on?({ x: 10, y: 8 }).should be_false
-        plateau.on?({ x: -10, y: 8 }).should be_false
+        plateau.contains?({ x: 10, y: 8 }).should be_false
+        plateau.contains?({ x: -10, y: 8 }).should be_false
       end
     end
 
     context "for x coordinates less than or equal to the plateau's width and greater than or equal to zero" do
       it "returns true" do
-        plateau.on?({ x: 7, y: 8 }).should be_true
-        plateau.on?({ x: 0, y: 0 }).should be_true
+        plateau.contains?({ x: 7, y: 8 }).should be_true
+        plateau.contains?({ x: 0, y: 0 }).should be_true
       end
     end
     
     context "for y coordinates greater than the plateau's height or less than zero" do
       it "returns false" do
-        plateau.on?({ x: 7, y: 9 }).should be_false
-        plateau.on?({ x: 7, y: -1 }).should be_false
+        plateau.contains?({ x: 7, y: 9 }).should be_false
+        plateau.contains?({ x: 7, y: -1 }).should be_false
       end
     end
 
     context "for y coordinates less than or equal to the plateau's height and greater than or equal to zero" do
       it "returns true" do
-        plateau.on?({ x: 7, y: 8 }).should be_true
-        plateau.on?({ x: 0, y: 0 }).should be_true
+        plateau.contains?({ x: 7, y: 8 }).should be_true
+        plateau.contains?({ x: 0, y: 0 }).should be_true
       end
     end
   end

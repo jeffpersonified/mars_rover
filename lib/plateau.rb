@@ -2,11 +2,11 @@ class Plateau
   attr_reader :width, :height
 
   def initialize(width, height)
-    @width = set_width width.to_i
+    @width  = set_width width.to_i
     @height = set_height height.to_i
   end
 
-  def on? location
+  def contains? location
     within_width?(location[:x]) && within_height?(location[:y])
   end
 
